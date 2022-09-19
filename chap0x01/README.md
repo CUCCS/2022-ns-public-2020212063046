@@ -20,15 +20,15 @@
   >虚拟机管理 -> 虚拟介质管理
   选中虚拟盘，属性-> 类型，修改类型为 *多重加载*
 
-  ![虚拟介质管理的多重加载](img\mulload1.jpg)  
+  ![虚拟介质管理的多重加载](img/mulload1.jpg)  
 
-  ![虚拟机相关设置中的多重加载](img\mulload2.jpg)
+  ![虚拟机相关设置中的多重加载](img/mulload2.jpg)
   
   ---
 
   #### 2. 搭建虚拟机网络拓扑
   - ##### 搭建满足如下拓扑图所示的虚拟机网络拓扑：
-  ![虚拟机网络拓扑](img\topo.png)
+  ![虚拟机网络拓扑](img/topo.png)
   ---
 
   - ##### 网关配置
@@ -39,10 +39,10 @@
          - 仅主机（Host-Only）网络，进行网卡设置
          - 内部网络intnet1，搭建局域网1
          - 内部网络intnet2，搭建局域网2
-       ![gw的网关配置](img\gw_network.jpg)
+       ![gw的网关配置](img/gw_network.jpg)
 
        - 观察IP
-       ![gwdebian的ip](img\gwdebian_ip.jpg)
+       ![gwdebian的ip](img/gwdebian_ip.jpg)
        这个时候我们就可以先配置 `ssh` 免密登录, 之后就可以根据 黄大 给的资料愉快的复制粘贴更改配置啦~（but 我真没找到黄大的资料，操作之后发现Debian的似乎已经配置好了（？），而视频是前几届师哥师姐的视频，所以我们是直接享受了一波福利hhh~
        ---
 
@@ -53,25 +53,25 @@
        - Host-Only 2
         注：这里Host-Only 是两块不同的Host-Only网卡，1 、2 是区分
 
-       ![kali攻击者的网关配置](img\attack_network.jpg)
+       ![kali攻击者的网关配置](img/attack_network.jpg)
        ---
 
      - 2.3 ==两个victim==各需要一块网卡
        - 内部网络，使不同组的victim在不同局域网内
        - xp-victim1 与 kali 在同一局域网内（intnet1）； x-victimp2 与 Debian 在同一局域网内（intnet2）
 
-       ![victim1网关配置](img\vim_network1.jpg)
+       ![victim1网关配置](img/vim_network1.jpg)
 
-       ![victim2网关配置](img\vim_network1.jpg)
+       ![victim2网关配置](img/vim_network1.jpg)
 
-       ![关闭防火墙](img\xp1_information.png)
+       ![关闭防火墙](img/xp1_information.png)
 
        注意：①启动Windows时顺手关闭 `防火墙设置` ，目的是方便后续连通性测试时可以 ping 通
             ② Windows 设置网络时，选择 `高级 -> 芯片控制 ->PCnet-FAST ` 设置
   - 查看IP
-    ![debian的IP信息](img\debian_ip.png)
-    ![xp1的IP信息](img\xp1_ip.png)
-    ![xp2的IP信息](img\xp2_ip.png)
+    ![debian的IP信息](img/debian_ip.png)
+    ![xp1的IP信息](img/xp1_ip.png)
+    ![xp2的IP信息](img/xp2_ip.png)
     
     整理出相应的各IP：
     | 虚拟机名称 | IP地址 |
@@ -92,14 +92,14 @@
  #### 3.连通性测试
   - 完成以下网络连通性测试：
     - 靶机可以直接访问攻击者主机
-     ![victim1可以访问attacker](img\xp1_ping_attacker.png)
-     ![victim2可以访问attacker](img\debianvim2_ping_attacker.png)
+     ![victim1可以访问attacker](img/xp1_ping_attacker.png)
+     ![victim2可以访问attacker](img/debianvim2_ping_attacker.png)
 
     - 攻击者主机无法直接访问靶机
-     ![attacker无法访问victim](img\attacker_ping_victim.png)
+     ![attacker无法访问victim](img/attacker_ping_victim.png)
 
     - 网关可以直接访问攻击者主机和靶机
-     ![gwdebian可以访问attacker&victim](img\gwdebian_ping_attack&vim.png)
+     ![gwdebian可以访问attacker&victim](img/gwdebian_ping_attack&vim.png)
 
     - 靶机的所有对外上下行流量必须经过网关
       这里我看舍友都是用上学期计算机网络实验的 `wireshark` 软件监控，但是由于上学期网课就在家里台式机上做了，~~太懒了不想再次安装wireshark，所以采取别的办法hhh~~
@@ -111,13 +111,13 @@
       如何说明靶机的对外上下行流量必须经过网关？对网卡进行监控，各节点访问互联网，观察是否捕获到上下行的包；关闭网关，发现所有节点无法访问互联网。
 
     - 所有节点均可以访问互联网
-     ![attacker访问互联网](img\attacker_ping_net.png)
+     ![attacker访问互联网](img/attacker_ping_net.png)
 
-     ![victim1访问互联网](img\vim1_ping_net.png)
-     ![victim1上下行流量监测](img\vim1_pass_gw.png)
+     ![victim1访问互联网](img/vim1_ping_net.png)
+     ![victim1上下行流量监测](img/vim1_pass_gw.png)
 
-     ![victim2访问互联网](img\debianvim2_ping_net.png)
-     ![victim2上下行流量监测](img\vim2_pass_gw.png)
+     ![victim2访问互联网](img/debianvim2_ping_net.png)
+     ![victim2上下行流量监测](img/vim2_pass_gw.png)
 
 ---
 ## 课后习题及思考
@@ -157,7 +157,7 @@
 ---
 ## 问题及解决
   - 修改网络为 `网络地址转换NAT` 时 报错 `无效按钮` ：
-    ![无效按钮](img\无效按钮_报错1.jpg)
+    ![无效按钮](img/无效按钮_报错1.jpg)
 
     解决方式： 管理 ->全局设定 ->网络 ->点击右侧 ‘+’ 号 ->点击 ‘OK’ ->返回主界面点击设置 即可解决问题。
     （主要是之前的课程实验相同操作没遇到这样的问题，所以个人认为值得记录一下…
