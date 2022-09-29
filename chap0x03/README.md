@@ -12,13 +12,14 @@
 sudo apt update&&sudo apt install tinyproxy
 ```
 
-- 1.2 修改 tinyproxy 配置文件，取消`Allow 10.0.0.0/8`的注释
-      ![修改配置文件](img/conf_change.png)
+- 1.2 修改 tinyproxy 配置文件，取消 `Allow 10.0.0.0/8` 的注释并且添加 `Allow 192.168.56.0/24` 实现通过host-only网卡与宿主机进行通讯的需要。
+     ![修改配置文件](img/conf_change.png)
 
-- 1.3 开启 tinyproxy 服务(~~忘记了就是一把辛酸泪，别问我是怎么知道的~~)
-      ```
-      /etc/init.d/tinyproxy start
-      ```
+- 1.3 开启 tinyproxy 服务(~~忘记了就是一把辛酸泪，别问我是怎么知道的~~)\
+```python
+# 开启 tinyproxy 服务
+/etc/init.d/tinyproxy start
+```
 
 - 1.4 设置虚拟机 kali 的联网方式为 `NAT和端口转发`，默认监听端口`8888`
       ![设置虚拟机端口](img/net%26port.png)
@@ -59,6 +60,7 @@ sudo apt update&&sudo apt install tinyproxy
 ## 问题及解决
 - proxy 服务启动时使用 `systemctl start proxy` 时报错 `Failed to start proxy.server :Unit proxy.server not found`\
   解决方法：看了一些解决方案，主要是 “重新加载” 的方法，尝试了也没用，于是询问室友说她使用 `/etc/init.d/tinyproxy start` 命令启动服务，我一尝试果然可以，~~感谢小刘同学~~但是为什么会这样子？待解决……
+  ![proxy启动问题](img/start_proxy.png)
 
 
 ## 课后习题
@@ -69,7 +71,7 @@ sudo apt update&&sudo apt install tinyproxy
 (2) 对守方的意义？\
   通过网络代理可以加密通信数据，防止通信数据被窃听和篡改。\
   通过审查网络通信数据，进行恶意流量检测和过滤并可发现、阻止失泄密行为。\
-  改变网络拓扑结构，实现跨局域网/异构网络通信或者用于安全保护等级较高的内部网络。\
+  改变网络拓扑结构，实现跨局域网/异构网络通信或者用于安全保护等级较高的内部网络。
 
 2.常规代理技术和高级代理技术的设计思想区别与联系？\
   联系：都是通过第三方服务来获得资源。\
